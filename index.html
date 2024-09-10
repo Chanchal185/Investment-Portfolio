@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Portfolio Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Investment Portfolio Tracker</h1>
+        <div id="portfolioSummary">
+            <p>Total Portfolio Value: $<span id="totalValue">0.00</span></p>
+        </div>
+        <button id="showAddFormBtn">Add New Investment</button>
+        
+        <!-- Add Investment Form -->
+        <div id="addInvestmentForm" class="hidden">
+            <h2>Add New Investment</h2>
+            <label for="assetName">Asset Name:</label>
+            <input type="text" id="assetName" placeholder="e.g., Apple">
+            <label for="amountInvested">Amount Invested:</label>
+            <input type="number" id="amountInvested" step="0.01" placeholder="e.g., 1000">
+            <label for="currentValue">Current Value:</label>
+            <input type="number" id="currentValue" step="0.01" placeholder="e.g., 1200">
+            <button id="addInvestmentBtn">Add Investment</button>
+        </div>
+        <!-- Update Investment Form -->
+        <div id="updateInvestmentForm" class="hidden">
+            <h2>Update Investment</h2>
+            <label for="updateAssetName">Asset Name:</label>
+            <input type="text" id="updateAssetName" readonly>
+            <label for="updateAmountInvested">Amount Invested:</label>
+            <input type="number" id="updateAmountInvested" step="0.01" readonly>
+            <label for="updateCurrentValue">Current Value:</label>
+            <input type="number" id="updateCurrentValue" step="0.01">
+            <button id="updateInvestmentBtn">Update Investment</button>
+        </div>
+
+
+        <!-- Investment List -->
+        <div id="investmentList">
+            <h2>Investment List</h2>
+            <table id="investmentsTable">
+                <thead>
+                    <tr>
+                        <th>Asset Name</th>
+                        <th>Invested</th>
+                        <th>Current Value</th>
+                        <th>% Change</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Pie Chart -->
+        <div id="chartContainer">
+            <canvas id="portfolioChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
