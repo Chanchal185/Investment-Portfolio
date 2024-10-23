@@ -42,16 +42,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const labels = investments.map(inv => inv.assetName);
         const data = investments.map(inv => inv.currentValue);
         const colors = ['#ff6384', '#36a2eb', '#cc65fe', '#ffce56'];
-        
+    
         const total = data.reduce((sum, value) => sum + value, 0);
         let startAngle = 0;
-
+    
+        const canvas = document.getElementById('portfolioChart');
+        
+        // Set the canvas size to a fixed smaller size
+        const chartSize = Math.min(canvas.parentElement.clientWidth, 300); // Set max width to 300px
+        canvas.width = chartSize;
+        canvas.height = chartSize; // Keep it square
+    
         ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear previous chart
         
         data.forEach((value, index) => {
             const sliceAngle = (value / total) * 2 * Math.PI;
             const endAngle = startAngle + sliceAngle;
-
+    
+            // Draw the pie slice
             ctx.beginPath();
             ctx.moveTo(canvas.width / 2, canvas.height / 2);
             ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, startAngle, endAngle);
@@ -59,11 +67,20 @@ document.addEventListener('DOMContentLoaded', function() {
             
             ctx.fillStyle = colors[index % colors.length];
             ctx.fill();
-
+    
+            // Calculate the label position
+            const labelAngle = startAngle + sliceAngle / 2;
+            const labelX = (canvas.width / 2) + (canvas.width / 3) * Math.cos(labelAngle);
+            const labelY = (canvas.height / 2) + (canvas.height / 3) * Math.sin(labelAngle);
+    
+            // Draw the label
+            ctx.fillStyle = '#000';
+            ctx.fillText(labels[index], labelX, labelY);
+    
             startAngle = endAngle;
         });
     };
-
+    
     const saveToLocalStorage = () => {
         localStorage.setItem('investments', JSON.stringify(investments));
     };

@@ -6,7 +6,8 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 90%; /* Use a percentage for responsiveness */
+    max-width: 1200px; /* Maximum width for large screens */
     margin: auto;
     padding: 20px;
     background: #fff;
@@ -15,6 +16,7 @@ body {
 
 h1, h2 {
     color: #333;
+    text-align: center; /* Center headings */
 }
 
 #portfolioSummary {
@@ -28,6 +30,13 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    width: 100%; /* Full width for buttons */
+    max-width: 200px; /* Optional: limit button width */
+    margin: 5px; /* Add margin to create space */
+}
+
+.update-btn, .remove-btn {
+    width: auto; /* Allow buttons to size based on content */
 }
 
 button:hover {
@@ -59,6 +68,7 @@ input[type="text"], input[type="number"] {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
 th, td {
@@ -73,4 +83,30 @@ th {
 
 #chartContainer {
     margin-top: 20px;
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Limit max width */
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+canvas {
+    width: 100%; /* Responsive canvas */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Media queries for smaller devices */
+@media (max-width: 400px) {
+    button {
+        max-width: 50%; /* Buttons full width on smaller screens */
+    }
+
+    .container {
+        width: 95%; /* More width on small screens */
+    }
+
+    h1 {
+        font-size: 1.5em; /* Adjust heading size */
+    }
 }
